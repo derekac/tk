@@ -1,0 +1,44 @@
+package com.treasure.v2.dao.impl;
+
+import com.treasure.v2.dao.TbkPrefectItemDAO;
+import com.treasure.v2.model.TbkPrefectItem;
+import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
+
+public class TbkPrefectItemDAOImpl extends SqlMapClientDaoSupport implements TbkPrefectItemDAO {
+
+    public TbkPrefectItemDAOImpl() {
+        super();
+    }
+
+    public int deleteByPrimaryKey(Integer id) {
+        TbkPrefectItem _key = new TbkPrefectItem();
+        _key.setId(id);
+        int rows = getSqlMapClientTemplate().delete("tbk_prefect_item.deleteByPrimaryKey", _key);
+        return rows;
+    }
+
+    public void insert(TbkPrefectItem record) {
+        getSqlMapClientTemplate().insert("tbk_prefect_item.insert", record);
+    }
+
+    public void insertSelective(TbkPrefectItem record) {
+        getSqlMapClientTemplate().insert("tbk_prefect_item.insertSelective", record);
+    }
+
+    public TbkPrefectItem selectByPrimaryKey(Integer id) {
+        TbkPrefectItem _key = new TbkPrefectItem();
+        _key.setId(id);
+        TbkPrefectItem record = (TbkPrefectItem) getSqlMapClientTemplate().queryForObject("tbk_prefect_item.selectByPrimaryKey", _key);
+        return record;
+    }
+
+    public int updateByPrimaryKeySelective(TbkPrefectItem record) {
+        int rows = getSqlMapClientTemplate().update("tbk_prefect_item.updateByPrimaryKeySelective", record);
+        return rows;
+    }
+
+    public int updateByPrimaryKey(TbkPrefectItem record) {
+        int rows = getSqlMapClientTemplate().update("tbk_prefect_item.updateByPrimaryKey", record);
+        return rows;
+    }
+}

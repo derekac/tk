@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    <display-name>quicloud-express-daemon</display-name>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath*:/spring/spring-profile.xml
+        </param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>ch.qos.logback.classic.selector.servlet.ContextDetachingSCL</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <!-- Filter 定义 -->
+    <!-- Character Encoding filter -->
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--<filter>-->
+        <!--<filter-name>loginAuthFilter</filter-name>-->
+        <!--<filter-class>LoginAuthFilter</filter-class>-->
+        <!--<init-param>-->
+            <!--<param-name>auth-config</param-name>-->
+            <!--<param-value>auth.cfg</param-value>-->
+        <!--</init-param>-->
+    <!--</filter>-->
+
+
+    <!--<filter-mapping>-->
+        <!--<filter-name>loginAuthFilter</filter-name>-->
+        <!--<url-pattern>/admin-*</url-pattern>-->
+    <!--</filter-mapping>-->
+
+
+    <!-- Spring MVC Servlet -->
+    <servlet>
+        <servlet-name>spring</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/spring-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>spring</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>spring</servlet-name>-->
+    <!--<url-pattern>/api/*</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <servlet-mapping>
+        <servlet-name>spring</servlet-name>
+        <url-pattern>*.htm</url-pattern>
+    </servlet-mapping>
+
+    <!--
+        设置sup表示本op服务为主服务，负责动态调用底层的服务构成一个“庞大”的服务汇总平台（http服务）
+        设置sub表示本op服务为次服务，负责一个具体的服务（http服务）[默认值]
+    -->
+    <env-entry>
+        <env-entry-name>role</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>sub</env-entry-value>
+    </env-entry>
+
+    <!-- session超时定义,单位为分钟 -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+</web-app>

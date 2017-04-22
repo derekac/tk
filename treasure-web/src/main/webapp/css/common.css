@@ -1,0 +1,38 @@
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+.header {
+	line-height: 40px;
+	height: 40px;
+	border-bottom: 1px solid #eee;
+	text-align: center;
+	position: fixed;
+	width: 100%;
+	background: white;
+	z-index: 9999;
+}
+
+.headerarrow img {
+	width: 30px;
+	height: 30px;
+	display: block;
+	margin: 5px 0 0 10px;
+	float: left;
+}
+
+.headertitle {
+	float: left;
+	margin-left: 25%;
+}
+
+.topwhite {
+	height: 50px;
+}

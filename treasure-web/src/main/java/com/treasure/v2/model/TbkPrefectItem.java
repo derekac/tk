@@ -259,6 +259,7 @@ public class TbkPrefectItem {
     public PerfectItem formatPerfectItem() {
         PerfectItem item = new PerfectItem();
         item = JSON.parseObject(JSON.toJSONString(this), PerfectItem.class);
+        item.setPerfectId(getId());
         return item;
     }
 }

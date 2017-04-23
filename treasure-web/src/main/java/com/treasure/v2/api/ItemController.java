@@ -2,15 +2,14 @@ package com.treasure.v2.api;
 
 import com.alibaba.fastjson.JSONObject;
 import com.treasure.v2.core.RestfulResponse;
+import com.treasure.v2.dao.TbkPrefectItemDAO;
 import com.treasure.v2.model.Item;
+import com.treasure.v2.model.TbkPrefectItem;
 import com.treasure.v2.service.PerfectItemService;
 import com.treasure.v2.vo.PerfectItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +22,18 @@ public class ItemController {
 
     @Autowired
     private PerfectItemService perfectItemService;
+
+    @Autowired
+    private TbkPrefectItemDAO tbkPrefectItemDAO;
+
+    @RequestMapping(value = "/item-get/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getItemById(@PathVariable Integer id) {
+        JSONObject     ret            = new JSONObject();
+        TbkPrefectItem tbkPrefectItem = tbkPrefectItemDAO.selectByPrimaryKey(id);
+        ret.put("items", tbkPrefectItem.formatPerfectItem());
+        return ret;
+    }
 
     @RequestMapping(value = "/item-get", method = RequestMethod.GET)
     @ResponseBody

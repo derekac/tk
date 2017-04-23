@@ -6,6 +6,7 @@ import java.util.Date;
  * Created by derek on 4/22/17.
  */
 public class PerfectItem {
+    private Integer perfectId;
     private Long itemId;
 
     private String title;
@@ -77,6 +78,14 @@ public class PerfectItem {
 
     public void setItemUrl(String itemUrl) {
         this.itemUrl = itemUrl;
+    }
+
+    public Integer getPerfectId() {
+        return perfectId;
+    }
+
+    public void setPerfectId(Integer perfectId) {
+        this.perfectId = perfectId;
     }
 
     public String getCatName() {

@@ -31,7 +31,7 @@ public class ItemController {
     public Object getItemById(@PathVariable Integer id) {
         JSONObject     ret            = new JSONObject();
         TbkPrefectItem tbkPrefectItem = tbkPrefectItemDAO.selectByPrimaryKey(id);
-        ret.put("items", tbkPrefectItem.formatPerfectItem());
+        ret.put("item", tbkPrefectItem.formatPerfectItem());
         return ret;
     }
 

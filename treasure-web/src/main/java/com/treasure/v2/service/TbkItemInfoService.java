@@ -55,7 +55,9 @@ public class TbkItemInfoService {
         info.setPictUrl(item.getPictUrl());
         info.setProvcity(item.getProvcity());
         info.setReservePrice(item.getReservePrice());
-        info.setSellerId(Integer.valueOf(item.getSellerId().toString()));
+        if (item.getSellerId() != null) {
+            info.setSellerId(Integer.valueOf(item.getSellerId().toString()));
+        }
         info.setSmallImages(Joiner.on(",").join(item.getSmallImages()));
         info.setTitle(item.getTitle());
         info.setZkFinalPrice(item.getZkFinalPrice());

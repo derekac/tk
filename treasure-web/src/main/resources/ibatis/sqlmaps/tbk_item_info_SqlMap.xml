@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="tbk_item_info" >
+  <resultMap id="BaseResultMap" class="com.treasure.v2.model.TbkItemInfo" >
+    <result column="num_id" property="numId" jdbcType="BIGINT" />
+    <result column="pict_url" property="pictUrl" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="reserve_price" property="reservePrice" jdbcType="VARCHAR" />
+    <result column="zk_final_price" property="zkFinalPrice" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="INTEGER" />
+    <result column="provcity" property="provcity" jdbcType="VARCHAR" />
+    <result column="item_url" property="itemUrl" jdbcType="VARCHAR" />
+    <result column="nick" property="nick" jdbcType="VARCHAR" />
+    <result column="seller_id" property="sellerId" jdbcType="INTEGER" />
+    <result column="volume" property="volume" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" class="com.treasure.v2.model.TbkItemInfo" extends="tbk_item_info.BaseResultMap" >
+    <result column="small_images" property="smallImages" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    num_id, pict_url, title, reserve_price, zk_final_price, user_type, provcity, item_url, 
+    nick, seller_id, volume, update_time, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    small_images
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterClass="com.treasure.v2.model.TbkItemInfo" >
+    select 
+    <include refid="tbk_item_info.Base_Column_List" />
+    ,
+    <include refid="tbk_item_info.Blob_Column_List" />
+    from tbk_item_info
+    where num_id = #numId:BIGINT#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.treasure.v2.model.TbkItemInfo" >
+    delete from tbk_item_info
+    where num_id = #numId:BIGINT#
+  </delete>
+  <insert id="insert" parameterClass="com.treasure.v2.model.TbkItemInfo" >
+    insert into tbk_item_info (num_id, pict_url, title, reserve_price, 
+      zk_final_price, user_type, provcity, item_url, 
+      nick, seller_id, volume, update_time, create_time, 
+      small_images)
+    values (#numId:BIGINT#, #pictUrl:VARCHAR#, #title:VARCHAR#, #reservePrice:VARCHAR#, 
+      #zkFinalPrice:VARCHAR#, #userType:INTEGER#, #provcity:VARCHAR#, #itemUrl:VARCHAR#, 
+      #nick:VARCHAR#, #sellerId:INTEGER#, #volume:BIGINT#, #updateTime:TIMESTAMP#, #createTime:TIMESTAMP#, 
+      #smallImages:LONGVARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.treasure.v2.model.TbkItemInfo" >
+    insert into tbk_item_info
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="numId" >
+        num_id
+      </isNotNull>
+      <isNotNull prepend="," property="pictUrl" >
+        pict_url
+      </isNotNull>
+      <isNotNull prepend="," property="title" >
+        title
+      </isNotNull>
+      <isNotNull prepend="," property="reservePrice" >
+        reserve_price
+      </isNotNull>
+      <isNotNull prepend="," property="zkFinalPrice" >
+        zk_final_price
+      </isNotNull>
+      <isNotNull prepend="," property="userType" >
+        user_type
+      </isNotNull>
+      <isNotNull prepend="," property="provcity" >
+        provcity
+      </isNotNull>
+      <isNotNull prepend="," property="itemUrl" >
+        item_url
+      </isNotNull>
+      <isNotNull prepend="," property="nick" >
+        nick
+      </isNotNull>
+      <isNotNull prepend="," property="sellerId" >
+        seller_id
+      </isNotNull>
+      <isNotNull prepend="," property="volume" >
+        volume
+      </isNotNull>
+      <isNotNull prepend="," property="updateTime" >
+        update_time
+      </isNotNull>
+      <isNotNull prepend="," property="createTime" >
+        create_time
+      </isNotNull>
+      <isNotNull prepend="," property="smallImages" >
+        small_images
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="numId" >
+        #numId:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="pictUrl" >
+        #pictUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="title" >
+        #title:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="reservePrice" >
+        #reservePrice:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="zkFinalPrice" >
+        #zkFinalPrice:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="userType" >
+        #userType:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="provcity" >
+        #provcity:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="itemUrl" >
+        #itemUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="nick" >
+        #nick:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sellerId" >
+        #sellerId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="volume" >
+        #volume:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="updateTime" >
+        #updateTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="createTime" >
+        #createTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="smallImages" >
+        #smallImages:LONGVARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.treasure.v2.model.TbkItemInfo" >
+    update tbk_item_info
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="pictUrl" >
+        pict_url = #pictUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="title" >
+        title = #title:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="reservePrice" >
+        reserve_price = #reservePrice:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="zkFinalPrice" >
+        zk_final_price = #zkFinalPrice:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="userType" >
+        user_type = #userType:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="provcity" >
+        provcity = #provcity:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="itemUrl" >
+        item_url = #itemUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="nick" >
+        nick = #nick:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sellerId" >
+        seller_id = #sellerId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="volume" >
+        volume = #volume:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="updateTime" >
+        update_time = #updateTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="createTime" >
+        create_time = #createTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="smallImages" >
+        small_images = #smallImages:LONGVARCHAR#
+      </isNotNull>
+    </dynamic>
+    where num_id = #numId:BIGINT#
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterClass="com.treasure.v2.model.TbkItemInfo" >
+    update tbk_item_info
+    set pict_url = #pictUrl:VARCHAR#,
+      title = #title:VARCHAR#,
+      reserve_price = #reservePrice:VARCHAR#,
+      zk_final_price = #zkFinalPrice:VARCHAR#,
+      user_type = #userType:INTEGER#,
+      provcity = #provcity:VARCHAR#,
+      item_url = #itemUrl:VARCHAR#,
+      nick = #nick:VARCHAR#,
+      seller_id = #sellerId:INTEGER#,
+      volume = #volume:BIGINT#,
+      update_time = #updateTime:TIMESTAMP#,
+      create_time = #createTime:TIMESTAMP#,
+      small_images = #smallImages:LONGVARCHAR#
+    where num_id = #numId:BIGINT#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.treasure.v2.model.TbkItemInfo" >
+    update tbk_item_info
+    set pict_url = #pictUrl:VARCHAR#,
+      title = #title:VARCHAR#,
+      reserve_price = #reservePrice:VARCHAR#,
+      zk_final_price = #zkFinalPrice:VARCHAR#,
+      user_type = #userType:INTEGER#,
+      provcity = #provcity:VARCHAR#,
+      item_url = #itemUrl:VARCHAR#,
+      nick = #nick:VARCHAR#,
+      seller_id = #sellerId:INTEGER#,
+      volume = #volume:BIGINT#,
+      update_time = #updateTime:TIMESTAMP#,
+      create_time = #createTime:TIMESTAMP#
+    where num_id = #numId:BIGINT#
+  </update>
+</sqlMap>

@@ -7,4 +7,5 @@
               lazyLoadingEnabled="true" errorTracingEnabled="true"
               useStatementNamespaces="true"/>
     <sqlMap resource="ibatis/sqlmaps/tbk_prefect_item_SqlMap.xml"/>
+    <sqlMap resource="ibatis/sqlmaps/tbk_item_info_SqlMap.xml"/>
 </sqlMapConfig>

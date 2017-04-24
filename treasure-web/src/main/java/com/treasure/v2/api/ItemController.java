@@ -1,11 +1,11 @@
 package com.treasure.v2.api;
 
 import com.alibaba.fastjson.JSONObject;
-import com.treasure.v2.core.RestfulResponse;
 import com.treasure.v2.dao.TbkPrefectItemDAO;
-import com.treasure.v2.model.Item;
+import com.treasure.v2.model.TbkItemInfo;
 import com.treasure.v2.model.TbkPrefectItem;
 import com.treasure.v2.service.PerfectItemService;
+import com.treasure.v2.service.TbkItemInfoService;
 import com.treasure.v2.vo.PerfectItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import java.util.List;
  * Created by derek on 16/4/24.
  */
 @Controller
-@RequestMapping("api")
+@RequestMapping("/api")
 public class ItemController {
 
     @Autowired
@@ -25,6 +25,9 @@ public class ItemController {
 
     @Autowired
     private TbkPrefectItemDAO tbkPrefectItemDAO;
+
+    @Autowired
+    private TbkItemInfoService tbkItemInfoService;
 
     @RequestMapping(value = "/item-get/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -59,6 +62,18 @@ public class ItemController {
         ret.put("items", items);
         ret.put("total_results", total);
         return ret;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/item/info", method = RequestMethod.GET)
+    private Object getItemInfo(@RequestParam(required = false) Long itemId) {
+        JSONObject sr = new JSONObject();
+
+        TbkItemInfo info = tbkItemInfoService.getTbkItemInfoByNumId(itemId);
+
+        sr.put("info", info);
+
+        return sr;
     }
 
 }

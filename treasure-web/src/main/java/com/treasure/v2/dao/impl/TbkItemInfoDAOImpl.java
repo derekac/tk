@@ -3,8 +3,10 @@ package com.treasure.v2.dao.impl;
 import com.treasure.v2.dao.TbkItemInfoDAO;
 import com.treasure.v2.model.TbkItemInfo;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
+import org.springframework.stereotype.Repository;
 
-public class TbkItemInfoDAOImpl extends SqlMapClientDaoSupport implements TbkItemInfoDAO {
+@Repository
+public class TbkItemInfoDAOImpl extends TreasureSqlMapClientDaoSupport implements TbkItemInfoDAO {
 
     public TbkItemInfoDAOImpl() {
         super();

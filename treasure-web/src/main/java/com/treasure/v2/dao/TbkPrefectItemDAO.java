@@ -22,4 +22,6 @@ public interface TbkPrefectItemDAO {
 
     int getItemByParamsTotal(Map<String,String> params);
 
+
+    List<TbkPrefectItem> selectByItemsPage(int pageNo,int pageSize);
 }

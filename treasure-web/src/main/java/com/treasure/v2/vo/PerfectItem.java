@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class PerfectItem {
     private Integer perfectId;
-    private Long itemId;
+    private Long    itemId;
 
     private String title;
 
@@ -47,6 +47,35 @@ public class PerfectItem {
     private String couponsUrl;
 
     private String itemAdUrl;
+
+    private String wirelessShare;
+
+    private String shortUrl;
+    private String preferPrice;
+
+    public String getShortUrl() {
+        return shortUrl;
+    }
+
+    public void setShortUrl(String shortUrl) {
+        this.shortUrl = shortUrl;
+    }
+
+    public String getPreferPrice() {
+        return preferPrice;
+    }
+
+    public void setPreferPrice(String preferPrice) {
+        this.preferPrice = preferPrice;
+    }
+
+    public String getWirelessShare() {
+        return wirelessShare;
+    }
+
+    public void setWirelessShare(String wirelessShare) {
+        this.wirelessShare = wirelessShare;
+    }
 
     public Long getItemId() {
         return itemId;

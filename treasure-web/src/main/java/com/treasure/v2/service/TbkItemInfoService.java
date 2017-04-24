@@ -4,6 +4,7 @@ import com.google.common.base.Joiner;
 import com.taobao.api.domain.NTbkItem;
 import com.treasure.v2.dao.TbkItemInfoDAO;
 import com.treasure.v2.model.TbkItemInfo;
+import com.treasure.v2.util.HttpUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,15 @@ public class TbkItemInfoService {
         info.setCreateTime(now);
         info.setUpdateTime(now);
         return info;
+    }
+
+    public static void main(String[] args) {
+        String url = "http://tb.am/api.php?url_long=http://img04.taobaocdn.com/bao/uploaded/i4/TB1.7_4QFXXXXcEXXXXXXXXXXXX_!!0-item_pic.jpg";
+        try {
+            String msg = HttpUtils.crawl(url, 4000, "utf-8", "");
+            System.out.println(msg);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

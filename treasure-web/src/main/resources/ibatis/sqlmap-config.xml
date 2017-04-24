@@ -8,4 +8,7 @@
               useStatementNamespaces="true"/>
     <sqlMap resource="ibatis/sqlmaps/tbk_prefect_item_SqlMap.xml"/>
     <sqlMap resource="ibatis/sqlmaps/tbk_item_info_SqlMap.xml"/>
+    <sqlMap resource="ibatis/sqlmaps/tbk_group_SqlMap.xml"/>
+    <sqlMap resource="ibatis/sqlmaps/tbk_category_group_SqlMap.xml"/>
+
 </sqlMapConfig>

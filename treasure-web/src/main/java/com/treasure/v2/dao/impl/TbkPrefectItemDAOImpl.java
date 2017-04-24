@@ -8,12 +8,12 @@ import com.treasure.v2.model.TbkPrefectItem;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Repository
 public class TbkPrefectItemDAOImpl extends TreasureSqlMapClientDaoSupport implements TbkPrefectItemDAO {
-
 
 
     public TbkPrefectItemDAOImpl() {
@@ -60,6 +60,14 @@ public class TbkPrefectItemDAOImpl extends TreasureSqlMapClientDaoSupport implem
     @Override
     public int getItemByParamsTotal(Map<String, String> params) {
         return (Integer) getSqlMapClientTemplate().queryForObject("tbk_prefect_item.getItemByParamsTotal", params);
+    }
+
+    @Override
+    public List<TbkPrefectItem> selectByItemsPage(int pageNo, int pageSize) {
+        Map map = new HashMap();
+        map.put("limit", pageNo * pageSize);
+        map.put("skip", pageSize);
+        return getSqlMapClientTemplate().queryForList("tbk_prefect_item.selectByItemsPage", map);
     }
 
 }

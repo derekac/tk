@@ -27,12 +27,15 @@
         <result column="item_ad_url" property="itemAdUrl" jdbcType="VARCHAR"/>
         <result column="add_time" property="addTime" jdbcType="TIMESTAMP"/>
         <result column="gid" property="gid" jdbcType="INTEGER"/>
+        <result column="wireless_share" property="wirelessShare" jdbcType="VARCHAR"/>
+        <result column="short_url" property="shortUrl" jdbcType="VARCHAR"/>
+        <result column="prefer_price" property="preferPrice" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
     id, item_id, title, img_url, item_url, cat_name, tbk_url, price, volume, income_rate, 
     commission, taobao_nick, taobao_id, shop_name, platform, coupons_id, coupons_total, 
     coupons_remain, coupons_summary, coupons_start, coupons_end, coupons_url, item_ad_url, 
-    add_time, gid
+    add_time, gid,wireless_share,short_url,prefer_price
   </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.treasure.v2.model.TbkPrefectItem">
         select
@@ -53,7 +56,13 @@
             </isNotEmpty>
         </dynamic>
     </sql>
-
+    <select id="selectByItemsPage" resultMap="BaseResultMap" parameterClass="map">
+        select
+        <include refid="tbk_prefect_item.Base_Column_List"/>
+        from tbk_prefect_item
+        order by id desc
+        limit #limit#,#skip# ;
+    </select>
     <select id="selectItemsByParams" resultMap="BaseResultMap" parameterClass="map">
         select
         <include refid="tbk_prefect_item.Base_Column_List"/>
@@ -85,13 +94,13 @@
       commission, taobao_nick, taobao_id, shop_name, 
       platform, coupons_id, coupons_total, coupons_remain, 
       coupons_summary, coupons_start, coupons_end, coupons_url, 
-      item_ad_url, add_time, gid)
+      item_ad_url, add_time, gid,wireless_share,short_url,prefer_price)
     values (#id:INTEGER#, #itemId:BIGINT#, #title:VARCHAR#, #imgUrl:VARCHAR#, #itemUrl:VARCHAR#, 
       #catName:VARCHAR#, #tbkUrl:VARCHAR#, #price:DOUBLE#, #volume:BIGINT#, #incomeRate:DOUBLE#, 
       #commission:DOUBLE#, #taobaoNick:VARCHAR#, #taobaoId:BIGINT#, #shopName:VARCHAR#, 
       #platform:VARCHAR#, #couponsId:VARCHAR#, #couponsTotal:INTEGER#, #couponsRemain:INTEGER#, 
       #couponsSummary:VARCHAR#, #couponsStart:TIMESTAMP#, #couponsEnd:TIMESTAMP#, #couponsUrl:VARCHAR#, 
-      #itemAdUrl:VARCHAR#, #addTime:TIMESTAMP#, #gid:INTEGER#)
+      #itemAdUrl:VARCHAR#, #addTime:TIMESTAMP#, #gid:INTEGER#,#wirelessShare:VARCHAR#,#shortUrl:VARCHAR#,#preferPrice:VARCHAR#,)
   </insert>
     <insert id="insertSelective" parameterClass="com.treasure.v2.model.TbkPrefectItem">
         insert into tbk_prefect_item
@@ -170,6 +179,15 @@
             </isNotNull>
             <isNotNull prepend="," property="gid">
                 gid
+            </isNotNull>
+            <isNotNull prepend="," property="wirelessShare">
+                wireless_share
+            </isNotNull>
+            <isNotNull prepend="," property="shortUrl">
+                short_url
+            </isNotNull>
+            <isNotNull prepend="," property="preferPrice">
+                prefer_price
             </isNotNull>
             )
         </dynamic>
@@ -250,6 +268,15 @@
             <isNotNull prepend="," property="gid">
                 #gid:INTEGER#
             </isNotNull>
+            <isNotNull prepend="," property="wirelessShare">
+                #wirelessShare:VARCHAR#
+            </isNotNull>
+            <isNotNull prepend="," property="shortUrl">
+                #shortUrl:VARCHAR#
+            </isNotNull>
+            <isNotNull prepend="," property="preferPrice">
+                #preferPrice:VARCHAR#
+            </isNotNull>
             )
         </dynamic>
     </insert>
@@ -328,6 +355,15 @@
             <isNotNull prepend="," property="gid">
                 gid = #gid:INTEGER#
             </isNotNull>
+            <isNotNull prepend="," property="wirelessShare">
+                wireless_share = #wirelessShare:VARCHAR#
+            </isNotNull>
+            <isNotNull prepend="," property="shortUrl">
+                short_url = #shortUrl:VARCHAR#
+            </isNotNull>
+            <isNotNull prepend="," property="preferPrice">
+                prefer_price = #preferPrice:VARCHAR#
+            </isNotNull>
         </dynamic>
         where id = #id:INTEGER#
     </update>
@@ -356,7 +392,10 @@
       coupons_url = #couponsUrl:VARCHAR#,
       item_ad_url = #itemAdUrl:VARCHAR#,
       add_time = #addTime:TIMESTAMP#,
-      gid = #gid:INTEGER#
+      gid = #gid:INTEGER#,
+      wireless_share = #wirelessShare:VARCHAR#,
+      short_url = #shortUrl:VARCHAR#,
+      prefer_price = #preferPrice:VARCHAR#
     where id = #id:INTEGER#
   </update>
 </sqlMap>

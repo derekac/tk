@@ -56,6 +56,27 @@ public class TbkPrefectItem {
 
     private Integer gid;
 
+    private String wirelessShare;
+
+    private String shortUrl;
+    private String preferPrice;
+
+    public String getShortUrl() {
+        return shortUrl;
+    }
+
+    public void setShortUrl(String shortUrl) {
+        this.shortUrl = shortUrl;
+    }
+
+    public String getPreferPrice() {
+        return preferPrice;
+    }
+
+    public void setPreferPrice(String preferPrice) {
+        this.preferPrice = preferPrice;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -254,6 +275,14 @@ public class TbkPrefectItem {
 
     public void setGid(Integer gid) {
         this.gid = gid;
+    }
+
+    public String getWirelessShare() {
+        return wirelessShare;
+    }
+
+    public void setWirelessShare(String wirelessShare) {
+        this.wirelessShare = wirelessShare;
     }
 
     public PerfectItem formatPerfectItem() {

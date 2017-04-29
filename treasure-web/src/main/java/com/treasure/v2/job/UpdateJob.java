@@ -92,7 +92,7 @@ public class UpdateJob {
 
         if (StringUtils.isEmpty(item.getShortUrl())) {
             // 链接需要使用广告链接
-            String shorturl = getShortUrl(item.getItemAdUrl());
+            String shorturl = getShortUrl(item.getTbkUrl());
             if (StringUtils.isNotEmpty(shorturl)) {
                 item.setShortUrl(shorturl);
                 updateStatus = true;

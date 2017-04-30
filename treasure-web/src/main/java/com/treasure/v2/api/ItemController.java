@@ -69,9 +69,11 @@ public class ItemController {
     private Object getItemInfo(@RequestParam(required = false) Long itemId) {
         JSONObject sr = new JSONObject();
 
+        TbkPrefectItem prefectItem = tbkPrefectItemDAO.selectByItemId(itemId);
         TbkItemInfo info = tbkItemInfoService.getTbkItemInfoByNumId(itemId);
 
         sr.put("info", info);
+        sr.put("prefectItem", prefectItem);
 
         return sr;
     }

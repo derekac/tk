@@ -70,4 +70,11 @@ public class TbkPrefectItemDAOImpl extends TreasureSqlMapClientDaoSupport implem
         return getSqlMapClientTemplate().queryForList("tbk_prefect_item.selectByItemsPage", map);
     }
 
+    @Override
+    public TbkPrefectItem selectByItemId(Long ItemId) {
+        TbkPrefectItem _key = new TbkPrefectItem();
+        _key.setItemId(ItemId);
+        TbkPrefectItem record = (TbkPrefectItem) getSqlMapClientTemplate().queryForObject("tbk_prefect_item.selectByItemId", _key);
+        return record;
+    }
 }

@@ -30,6 +30,10 @@ public class TaobaoApiService {
     @Value("${tk.tb.appSecret}")
     private String secret;
 
+    // http://acs.m.taobao.com/h5/mtop.taobao.detail.getdetail/6.0/?data={"itemNumId": "39898254408"}
+    // TODO 找时间分析 获得淘宝详情页
+    private String detailUrl = "http://acs.m.taobao.com/h5/mtop.taobao.detail.getdetail/6.0/?data=";
+
     private Logger logger = LoggerFactory.getLogger(TaobaoApiService.class);
 
 

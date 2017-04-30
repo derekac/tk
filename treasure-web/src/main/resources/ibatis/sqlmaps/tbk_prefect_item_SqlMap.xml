@@ -398,4 +398,14 @@
       prefer_price = #preferPrice:VARCHAR#
     where id = #id:INTEGER#
   </update>
+
+
+    <select id="selectByItemId" resultMap="BaseResultMap" parameterClass="com.treasure.v2.model.TbkPrefectItem">
+        select
+        <include refid="tbk_prefect_item.Base_Column_List"/>
+        from tbk_prefect_item
+        where item_id = #itemId:BIGINT#
+        order by coupons_end desc
+        limit 1;
+    </select>
 </sqlMap>

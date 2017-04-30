@@ -51,7 +51,7 @@ public class UpdateJob {
         }
     }
 
-    @Scheduled(cron = "0 * * * * ?")
+//    @Scheduled(cron = "0 * * * * ?")
     public void update() {
         logger.info("开始启动更新宝贝服务");
         int pageNo   = 0;

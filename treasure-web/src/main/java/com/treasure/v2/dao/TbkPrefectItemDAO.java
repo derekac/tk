@@ -24,4 +24,6 @@ public interface TbkPrefectItemDAO {
 
 
     List<TbkPrefectItem> selectByItemsPage(int pageNo,int pageSize);
+
+    TbkPrefectItem selectByItemId(Long ItemId);
 }

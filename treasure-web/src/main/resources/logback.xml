@@ -25,9 +25,9 @@
     </appender>
 
     <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${log_dir}/taoxiaoer.log</file>
+        <file>/data/logs/taoxiaoer/taoxiaoer.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${log_dir}/taoxiaoer.log</fileNamePattern>
+            <fileNamePattern>/data/logs/taoxiaoer/taoxiaoer.log</fileNamePattern>
             <maxHistory>350</maxHistory>
         </rollingPolicy>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -39,9 +39,9 @@
     </appender>
 
     <appender name="errorRollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${log_dir}/taoxiaoer.error</file>
+        <file>/data/logs/taoxiaoer/taoxiaoer.error</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${log_dir}/taoxiaoer.error</fileNamePattern>
+            <fileNamePattern>/data/logs/taoxiaoer/taoxiaoer.error</fileNamePattern>
             <maxHistory>350</maxHistory>
         </rollingPolicy>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -53,9 +53,9 @@
     </appender>
 
     <appender name="dubboMonitorFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${log_dir}/dubbo-monitor.log</file>
+        <file>/data/logs/taoxiaoer/dubbo-monitor.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${log_dir}/dubbo-monitor.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+            <fileNamePattern>/data/logs/taoxiaoer/dubbo-monitor.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -69,11 +69,11 @@
         <appender-ref ref="rollingFile"/>
         <appender-ref ref="errorRollingFile"/>
         <appender-ref ref="console"/>
-        <if condition='property("spring.profiles.active").contains("development")'>
-            <then>
-                <appender-ref ref="console"/>
-            </then>
-        </if>
+        <!--<if condition='property("spring.profiles.active").contains("development")'>-->
+            <!--<then>-->
+                <!--<appender-ref ref="console"/>-->
+            <!--</then>-->
+        <!--</if>-->
     </root>
 
 </configuration>

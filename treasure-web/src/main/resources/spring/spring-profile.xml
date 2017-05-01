@@ -11,11 +11,8 @@
     <import resource="spring-context.xml"/>
     <import resource="spring-datasource.xml"/>
     <import resource="spring-schedule.xml"/>
-    <beans profile="development">
-        <context:property-placeholder
-                ignore-resource-not-found="false"
-                location="classpath*:/config/application.development.properties"/>
-    </beans>
-
+    <context:property-placeholder
+            ignore-resource-not-found="false"
+            location="classpath*:/config/application.development.properties"/>
 </beans>
 	

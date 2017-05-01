@@ -51,7 +51,7 @@ public class UpdateJob {
         }
     }
 
-//    @Scheduled(cron = "0 * * * * ?")
+    @Scheduled(cron = "0 * * * * ?")
     public void update() {
         logger.info("开始启动更新宝贝服务");
         int pageNo   = 0;
@@ -82,8 +82,8 @@ public class UpdateJob {
         boolean updateStatus = false;
         if (StringUtils.isEmpty(item.getWirelessShare())) {
             String wShare =
-            taobaoApiService.getWirelessShare(item.getTitle(), item.getItemAdUrl(),
-                    item.getTaobaoId(), item.getImgUrl());
+                    taobaoApiService.getWirelessShare(item.getTitle(), item.getItemAdUrl(),
+                            item.getTaobaoId(), item.getImgUrl());
             if (StringUtils.isNotEmpty(wShare)) {
                 item.setWirelessShare(wShare);
                 updateStatus = true;

@@ -646,7 +646,7 @@
     </dependencies>
 
     <build>
-        <finalName>treasure-web</finalName>
+        <finalName>taoxiaoer</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>

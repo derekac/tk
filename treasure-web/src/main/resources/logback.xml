@@ -25,9 +25,9 @@
     </appender>
 
     <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${log_dir}/treasure.log</file>
+        <file>${log_dir}/taoxiaoer.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${log_dir}/treasure.log</fileNamePattern>
+            <fileNamePattern>${log_dir}/taoxiaoer.log</fileNamePattern>
             <maxHistory>350</maxHistory>
         </rollingPolicy>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -39,9 +39,9 @@
     </appender>
 
     <appender name="errorRollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${log_dir}/treasure.error</file>
+        <file>${log_dir}/taoxiaoer.error</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${log_dir}/treasure.error</fileNamePattern>
+            <fileNamePattern>${log_dir}/taoxiaoer.error</fileNamePattern>
             <maxHistory>350</maxHistory>
         </rollingPolicy>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">

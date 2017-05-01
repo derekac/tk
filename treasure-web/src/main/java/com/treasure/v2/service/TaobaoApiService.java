@@ -52,7 +52,7 @@ public class TaobaoApiService {
             rsp = client.execute(req);
             if (rsp != null && rsp.isSuccess()) {
                 logger.info("调用接口成功 url:{} ret:{}", directurl, rsp.getBody());
-                return rsp.getBody();
+                return rsp.getModel();
             }
         } catch (Throwable e) {
             logger.error("调用接口异常 参数 title:{} url:{} uid:{} imgUrl:{}", title, directurl, uid, imgUrl);

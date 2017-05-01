@@ -20,7 +20,11 @@ public interface TbkPrefectItemDAO {
 
     List<TbkPrefectItem> selectItemsByParams(Map<String,String> params);
 
+    List<TbkPrefectItem> selectItemsNotExpireByParams(Map<String,String> params);
+
     int getItemByParamsTotal(Map<String,String> params);
+
+    int getItemNotExpireByParamsTotal(Map<String,String> params);
 
 
     List<TbkPrefectItem> selectByItemsPage(int pageNo,int pageSize);

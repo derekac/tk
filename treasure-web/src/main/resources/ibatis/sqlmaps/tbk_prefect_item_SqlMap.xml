@@ -56,6 +56,18 @@
             </isNotEmpty>
         </dynamic>
     </sql>
+    <sql id="When_Condition_not_expired">
+        where coupons_end > now()
+        <isNotEmpty prepend="and" property="query">
+            title like CONCAT('%',#query:VARCHAR#,'%')
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="gid">
+            gid = #gid#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="platform">
+            platform = #platform#
+        </isNotEmpty>
+    </sql>
     <select id="selectByItemsPage" resultMap="BaseResultMap" parameterClass="map">
         select
         <include refid="tbk_prefect_item.Base_Column_List"/>
@@ -77,11 +89,32 @@
         limit #limit#,#skip#;
     </select>
 
+    <select id="selectItemsNotExpireByParams" resultMap="BaseResultMap" parameterClass="map">
+        select
+        <include refid="tbk_prefect_item.Base_Column_List"/>
+        from tbk_prefect_item
+        <include refid="tbk_prefect_item.When_Condition_not_expired"/>
+        <isNotNull prepend=" " property="sortColumn">
+            order by $sortColumn$
+            <isNotNull prepend=" " property="direction">
+                $direction$
+            </isNotNull>
+        </isNotNull>
+        limit #limit#,#skip#;
+    </select>
+
     <select id="getItemByParamsTotal" resultClass="Integer"
             parameterClass="map">
         select count(1) as cnt
         from tbk_prefect_item
         <include refid="tbk_prefect_item.When_Condition"/>
+    </select>
+
+    <select id="getItemNotExpireByParamsTotal" resultClass="Integer"
+            parameterClass="map">
+        select count(1) as cnt
+        from tbk_prefect_item
+        <include refid="tbk_prefect_item.When_Condition_not_expired"/>
     </select>
 
     <delete id="deleteByPrimaryKey" parameterClass="com.treasure.v2.model.TbkPrefectItem">

@@ -58,8 +58,18 @@ public class TbkPrefectItemDAOImpl extends TreasureSqlMapClientDaoSupport implem
     }
 
     @Override
+    public List<TbkPrefectItem> selectItemsNotExpireByParams(Map<String, String> params) {
+        return getSqlMapClientTemplate().queryForList("tbk_prefect_item.selectItemsNotExpireByParams", params);
+    }
+
+    @Override
     public int getItemByParamsTotal(Map<String, String> params) {
         return (Integer) getSqlMapClientTemplate().queryForObject("tbk_prefect_item.getItemByParamsTotal", params);
+    }
+
+    @Override
+    public int getItemNotExpireByParamsTotal(Map<String, String> params) {
+        return (Integer) getSqlMapClientTemplate().queryForObject("tbk_prefect_item.getItemNotExpireByParamsTotal", params);
     }
 
     @Override

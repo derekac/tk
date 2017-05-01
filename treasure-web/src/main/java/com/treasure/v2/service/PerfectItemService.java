@@ -42,7 +42,7 @@ public class PerfectItemService {
     public List<PerfectItem> getItem(ItemGetParam param) {
         List<PerfectItem> perfectItems = Lists.newArrayList();
         try {
-            List<TbkPrefectItem> items = tbkPrefectItemDAO.selectItemsByParams(getParams(param));
+            List<TbkPrefectItem> items = tbkPrefectItemDAO.selectItemsNotExpireByParams(getParams(param));
             if (CollectionUtils.isNotEmpty(items)) {
                 for (TbkPrefectItem item : items) {
                     perfectItems.add(item.formatPerfectItem());
@@ -88,7 +88,7 @@ public class PerfectItemService {
 
     public Integer getItemCount(ItemGetParam param) {
         try {
-            Integer total = tbkPrefectItemDAO.getItemByParamsTotal(getParams(param));
+            Integer total = tbkPrefectItemDAO.getItemNotExpireByParamsTotal(getParams(param));
             return total;
         } catch (Throwable e) {
             logger.error("", e);

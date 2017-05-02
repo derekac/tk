@@ -56,19 +56,21 @@ public class PerfectItem {
     private String shortUrl;
     private String preferPrice;
 
+    private Double couponsPrice;
 
     private Double getCouponsPrice() {
-        if (StringUtils.isNotEmpty(getCouponsSummary())) {
-            String v1 = RegexUtils.regexString(getCouponsSummary(), "满(\\d+)元");
-            String v3 = RegexUtils.regexString(getCouponsSummary(), "(\\d+)元无条件券");
-            if (StringUtils.isNumeric(v1)) {
-                return Double.parseDouble(v3);
+        if (couponsPrice == null) {
+            if (StringUtils.isNotEmpty(getCouponsSummary())) {
+                String v1 = RegexUtils.regexString(getCouponsSummary(), "满(\\d+)元");
+                String v3 = RegexUtils.regexString(getCouponsSummary(), "(\\d+)元无条件券");
+                if (StringUtils.isNumeric(v1)) {
+                    return Double.parseDouble(v3);
+                }
+                if (StringUtils.isNumeric(v3)) {
+                    return Double.parseDouble(v3);
+                }
             }
-            if (StringUtils.isNumeric(v3)) {
-                return Double.parseDouble(v3);
-            }
-        }
-        return null;
+        } else return couponsPrice;
     }
 
     public String getShortUrl() {

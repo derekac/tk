@@ -56,7 +56,7 @@ public class TbkItemInfoService {
     public TbkItemInfoApi getItemInfoBuNumId(Long numId) {
         TbkItemInfoApi infoApi = tbkItemInfoApiDAO.selectByPrimaryKey(numId);
         if (infoApi == null) {
-            String  info = taobaoApiService.getItemInfo(numId);
+            String info = taobaoApiService.getItemInfo(numId);
             infoApi = JSON.parseObject(info, TbkItemInfoApi.class);
             infoApi.setNumId(numId);
             tbkItemInfoApiDAO.insertSelective(infoApi);

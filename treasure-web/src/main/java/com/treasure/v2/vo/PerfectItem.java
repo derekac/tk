@@ -1,5 +1,8 @@
 package com.treasure.v2.vo;
 
+import com.treasure.v2.util.RegexUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Date;
 
 /**
@@ -52,6 +55,24 @@ public class PerfectItem {
 
     private String shortUrl;
     private String preferPrice;
+
+    private Double couponsPrice;
+
+    public Double getCouponsPrice() {
+        if (couponsPrice == null) {
+            if (StringUtils.isNotEmpty(getCouponsSummary())) {
+                String v2 = RegexUtils.regexString(getCouponsSummary(), "减(\\d+)元");
+                String v3 = RegexUtils.regexString(getCouponsSummary(), "(\\d+)元无条件券");
+                if (StringUtils.isNumeric(v2)) {
+                    return Double.parseDouble(v2);
+                }
+                if (StringUtils.isNumeric(v3)) {
+                    return Double.parseDouble(v3);
+                }
+            }
+        }
+        return couponsPrice;
+    }
 
     public String getShortUrl() {
         return shortUrl;

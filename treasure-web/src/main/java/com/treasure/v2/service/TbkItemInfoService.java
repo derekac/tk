@@ -1,9 +1,13 @@
 package com.treasure.v2.service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Joiner;
 import com.taobao.api.domain.NTbkItem;
+import com.treasure.v2.dao.TbkItemInfoApiDAO;
 import com.treasure.v2.dao.TbkItemInfoDAO;
 import com.treasure.v2.model.TbkItemInfo;
+import com.treasure.v2.model.TbkItemInfoApi;
 import com.treasure.v2.util.HttpUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +30,9 @@ public class TbkItemInfoService {
     @Autowired
     private TbkItemInfoDAO tbkItemInfoDAO;
 
+    @Autowired
+    private TbkItemInfoApiDAO tbkItemInfoApiDAO;
+
     public TbkItemInfo getTbkItemInfoByNumId(Long numId) {
         TbkItemInfo info = new TbkItemInfo();
         // 查询数据库
@@ -44,6 +51,17 @@ public class TbkItemInfoService {
         }
 
         return info;
+    }
+
+    public TbkItemInfoApi getItemInfoBuNumId(Long numId) {
+        TbkItemInfoApi infoApi = tbkItemInfoApiDAO.selectByPrimaryKey(numId);
+        if (infoApi == null) {
+            String  info = taobaoApiService.getItemInfo(numId);
+            infoApi = JSON.parseObject(info, TbkItemInfoApi.class);
+            infoApi.setNumId(numId);
+            tbkItemInfoApiDAO.insertSelective(infoApi);
+        }
+        return infoApi;
     }
 
 

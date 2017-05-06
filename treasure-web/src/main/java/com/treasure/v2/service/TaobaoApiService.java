@@ -1,5 +1,6 @@
 package com.treasure.v2.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.taobao.api.ApiException;
 import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;
@@ -8,6 +9,7 @@ import com.taobao.api.request.TbkItemInfoGetRequest;
 import com.taobao.api.request.WirelessShareTpwdCreateRequest;
 import com.taobao.api.response.TbkItemInfoGetResponse;
 import com.taobao.api.response.WirelessShareTpwdCreateResponse;
+import com.treasure.v2.util.HttpUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,9 +32,8 @@ public class TaobaoApiService {
     @Value("${tk.tb.appSecret}")
     private String secret;
 
-    // http://acs.m.taobao.com/h5/mtop.taobao.detail.getdetail/6.0/?data={"itemNumId": "39898254408"}
     // TODO 找时间分析 获得淘宝详情页
-    private String detailUrl = "http://acs.m.taobao.com/h5/mtop.taobao.detail.getdetail/6.0/?data=";
+    private static final String taobao_mobile_item_api = "http://hws.m.taobao.com/cache/wdetail/5.0/?id=";
 
     private Logger logger = LoggerFactory.getLogger(TaobaoApiService.class);
 
@@ -96,5 +97,19 @@ public class TaobaoApiService {
         }
 
         return nTbkItem;
+    }
+
+
+    public String getItemInfo(Long itemId) {
+
+        String taobaoMobile = taobao_mobile_item_api + itemId;
+        try {
+            String     msg        = HttpUtils.crawl(taobaoMobile, 4000, "utf-8", "");
+            JSONObject jsonObject = JSONObject.parseObject(msg);
+            return jsonObject.getString("data");
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+        return null;
     }
 }

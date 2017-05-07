@@ -58,8 +58,13 @@ public class TbkItemInfoService {
         if (infoApi == null) {
             String info = taobaoApiService.getItemInfo(numId);
             infoApi = JSON.parseObject(info, TbkItemInfoApi.class);
-            infoApi.setNumId(numId);
-            tbkItemInfoApiDAO.insertSelective(infoApi);
+            if(infoApi.getApiStack() != null) {
+                infoApi.setNumId(numId);
+                tbkItemInfoApiDAO.insertSelective(infoApi);
+            } else {
+                // 如果接口返回无此宝贝，应该是被删除了，以防万一先不删除词宝贝
+
+            }
         }
         return infoApi;
     }

@@ -2,7 +2,6 @@ package com.treasure.v2.api;
 
 import com.alibaba.fastjson.JSONObject;
 import com.treasure.v2.dao.TbkPrefectItemDAO;
-import com.treasure.v2.model.TbkItemInfo;
 import com.treasure.v2.model.TbkItemInfoApi;
 import com.treasure.v2.model.TbkPrefectItem;
 import com.treasure.v2.service.PerfectItemService;
@@ -74,7 +73,7 @@ public class ItemController {
         TbkItemInfoApi info = tbkItemInfoService.getItemInfoBuNumId(itemId);
 
         sr.put("info", info);
-        sr.put("prefectItem", prefectItem);
+        sr.put("prefectItem", prefectItem.formatPerfectItem());
 
         return sr;
     }

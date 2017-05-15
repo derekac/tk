@@ -4,17 +4,22 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Joiner;
 import com.taobao.api.domain.NTbkItem;
+import com.treasure.v2.dao.TbkItemDetailDAO;
 import com.treasure.v2.dao.TbkItemInfoApiDAO;
 import com.treasure.v2.dao.TbkItemInfoDAO;
+import com.treasure.v2.dao.TbkPrefectItemDAO;
+import com.treasure.v2.model.TbkItemDetail;
 import com.treasure.v2.model.TbkItemInfo;
 import com.treasure.v2.model.TbkItemInfoApi;
+import com.treasure.v2.model.TbkPrefectItem;
 import com.treasure.v2.util.HttpUtils;
+import com.treasure.v2.vo.PerfectItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.util.*;
 
 /**
  * Created by crow on 2017/4/24.
@@ -32,6 +37,12 @@ public class TbkItemInfoService {
 
     @Autowired
     private TbkItemInfoApiDAO tbkItemInfoApiDAO;
+
+    @Autowired
+    private TbkItemDetailDAO tbkItemDetailDAO;
+
+    @Autowired
+    private TbkPrefectItemDAO tbkPrefectItemDAO;
 
     public TbkItemInfo getTbkItemInfoByNumId(Long numId) {
         TbkItemInfo info = new TbkItemInfo();
@@ -69,6 +80,37 @@ public class TbkItemInfoService {
         return infoApi;
     }
 
+    public TbkItemDetail getItemDetailByNumId(Long numId, String descInfo) {
+        TbkItemDetail detail = tbkItemDetailDAO.selectByPrimaryKey(numId);
+
+        if (detail == null) {
+            String url =  JSONObject.parseObject(descInfo).getString("briefDescUrl");
+            String images = taobaoApiService.getItemDefail(url);
+            TbkItemDetail itemDetail = new TbkItemDetail();
+            itemDetail.setImagesUrl(images);
+            itemDetail.setItemId(numId);
+            itemDetail.setUpdateTime(new Date());
+            itemDetail.setCreateTime(new Date());
+
+            tbkItemDetailDAO.insert(itemDetail);
+
+            return itemDetail;
+        }
+
+        return detail;
+    }
+
+    public List<PerfectItem> getItemsByTaobaoId(Long taobaoId) {
+        Map params = new HashMap();
+        params.put("taobaoId", taobaoId);
+        List<PerfectItem> result = new ArrayList<PerfectItem>();
+        List<TbkPrefectItem> items = tbkPrefectItemDAO.selectItemsNotExpireByParams(params);
+        for (TbkPrefectItem item: items) {
+            PerfectItem temp = item.formatPerfectItem();
+            result.add(temp);
+        }
+        return result;
+    }
 
     private TbkItemInfo ntbkItemToTbkItemInfo(NTbkItem item) {
         Date now = new Date();
@@ -90,15 +132,5 @@ public class TbkItemInfoService {
         info.setCreateTime(now);
         info.setUpdateTime(now);
         return info;
-    }
-
-    public static void main(String[] args) {
-        String url = "http://tb.am/api.php?url_long=http://img04.taobaocdn.com/bao/uploaded/i4/TB1.7_4QFXXXXcEXXXXXXXXXXXX_!!0-item_pic.jpg";
-        try {
-            String msg = HttpUtils.crawl(url, 4000, "utf-8", "");
-            System.out.println(msg);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="tbk_item_detail" >
+  <resultMap id="BaseResultMap" class="com.treasure.v2.model.TbkItemDetail" >
+    <result column="item_id" property="itemId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" class="com.treasure.v2.model.TbkItemDetail" extends="tbk_item_detail.BaseResultMap" >
+    <result column="images_url" property="imagesUrl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    item_id, create_time, update_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    images_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterClass="com.treasure.v2.model.TbkItemDetail" >
+    select 
+    <include refid="tbk_item_detail.Base_Column_List" />
+    ,
+    <include refid="tbk_item_detail.Blob_Column_List" />
+    from tbk_item_detail
+    where item_id = #itemId:BIGINT#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.treasure.v2.model.TbkItemDetail" >
+    delete from tbk_item_detail
+    where item_id = #itemId:BIGINT#
+  </delete>
+  <insert id="insert" parameterClass="com.treasure.v2.model.TbkItemDetail" >
+    insert into tbk_item_detail (item_id, create_time, update_time, images_url
+      )
+    values (#itemId:BIGINT#, #createTime:TIMESTAMP#, #updateTime:TIMESTAMP#, #imagesUrl:LONGVARCHAR#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.treasure.v2.model.TbkItemDetail" >
+    insert into tbk_item_detail
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="itemId" >
+        item_id
+      </isNotNull>
+      <isNotNull prepend="," property="createTime" >
+        create_time
+      </isNotNull>
+      <isNotNull prepend="," property="updateTime" >
+        update_time
+      </isNotNull>
+      <isNotNull prepend="," property="imagesUrl" >
+        images_url
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="itemId" >
+        #itemId:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="createTime" >
+        #createTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="updateTime" >
+        #updateTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="imagesUrl" >
+        #imagesUrl:LONGVARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.treasure.v2.model.TbkItemDetail" >
+    update tbk_item_detail
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="createTime" >
+        create_time = #createTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="updateTime" >
+        update_time = #updateTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="imagesUrl" >
+        images_url = #imagesUrl:LONGVARCHAR#
+      </isNotNull>
+    </dynamic>
+    where item_id = #itemId:BIGINT#
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterClass="com.treasure.v2.model.TbkItemDetail" >
+    update tbk_item_detail
+    set create_time = #createTime:TIMESTAMP#,
+      update_time = #updateTime:TIMESTAMP#,
+      images_url = #imagesUrl:LONGVARCHAR#
+    where item_id = #itemId:BIGINT#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.treasure.v2.model.TbkItemDetail" >
+    update tbk_item_detail
+    set create_time = #createTime:TIMESTAMP#,
+      update_time = #updateTime:TIMESTAMP#
+    where item_id = #itemId:BIGINT#
+  </update>
+</sqlMap>

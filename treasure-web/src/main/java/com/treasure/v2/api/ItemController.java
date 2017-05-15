@@ -1,7 +1,9 @@
 package com.treasure.v2.api;
 
 import com.alibaba.fastjson.JSONObject;
+import com.sun.org.apache.regexp.internal.RE;
 import com.treasure.v2.dao.TbkPrefectItemDAO;
+import com.treasure.v2.model.TbkItemDetail;
 import com.treasure.v2.model.TbkItemInfoApi;
 import com.treasure.v2.model.TbkPrefectItem;
 import com.treasure.v2.service.PerfectItemService;
@@ -71,9 +73,22 @@ public class ItemController {
 
         TbkPrefectItem prefectItem = tbkPrefectItemDAO.selectByItemId(itemId);
         TbkItemInfoApi info = tbkItemInfoService.getItemInfoBuNumId(itemId);
+        TbkItemDetail detail = tbkItemInfoService.getItemDetailByNumId(itemId, info.getDescInfo());
 
         sr.put("info", info);
         sr.put("prefectItem", prefectItem.formatPerfectItem());
+        sr.put("detail", detail);
+
+        return sr;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/items", method = RequestMethod.GET)
+    private Object getItemsByTaobaoId(@RequestParam(required = false) Long taobaoId) {
+        JSONObject sr = new JSONObject();
+        List<PerfectItem> items = tbkItemInfoService.getItemsByTaobaoId(taobaoId);
+
+        sr.put("items", items);
 
         return sr;
     }

@@ -112,4 +112,15 @@ public class TaobaoApiService {
         }
         return null;
     }
+
+    public String getItemDefail(String url) {
+        try {
+            String     msg        = HttpUtils.crawl(url, 4000, "utf-8", "");
+            JSONObject jsonObject = JSONObject.parseObject(msg);
+            return jsonObject.getJSONObject("data").getString("images");
+        } catch (Exception e) {
+            logger.error("", e);
+        }
+        return null;
+    }
 }

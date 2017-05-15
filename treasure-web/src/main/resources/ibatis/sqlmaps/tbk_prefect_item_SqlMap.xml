@@ -67,6 +67,9 @@
         <isNotEmpty prepend="and" property="platform">
             platform = #platform#
         </isNotEmpty>
+        <isNotEmpty prepend="and" property="taobaoId">
+            taobao_id = #taobaoId#
+        </isNotEmpty>
     </sql>
     <select id="selectByItemsPage" resultMap="BaseResultMap" parameterClass="map">
         select
@@ -100,7 +103,9 @@
                 $direction$
             </isNotNull>
         </isNotNull>
-        limit #limit#,#skip#;
+        <isNotNull prepend=" " property="limit">
+            limit #limit#,#skip#;
+        </isNotNull>
     </select>
 
     <select id="getItemByParamsTotal" resultClass="Integer"

@@ -98,4 +98,32 @@
       add_time = #addTime:TIMESTAMP#
     where id = #id:INTEGER#
   </update>
+
+  <sql id="WHEN_CONDITION">
+    <dynamic prepend="where" >
+      <isNotNull prepend="and" property="groupId" >
+        group_id = #groupId:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="and" property="categoryName" >
+        category_name = #categoryName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="and" property="weight" >
+        weight = #weight:INTEGER#
+      </isNotNull>
+    </dynamic>
+  </sql>
+
+  <select id="selectParams" parameterClass="com.treasure.v2.model.TbkCategoryGroup" resultMap="BaseResultMap">
+    select
+    <include refid="tbk_category_group.Base_Column_List" />
+    from tbk_category_group
+    <include refid="tbk_category_group.WHEN_CONDITION"/>
+  </select>
+
+  <select id="selectRankingByWeight" resultMap="BaseResultMap">
+    select
+    <include refid="tbk_category_group.Base_Column_List" />
+    from tbk_category_group
+    ORDER by weight DESC
+  </select>
 </sqlMap>

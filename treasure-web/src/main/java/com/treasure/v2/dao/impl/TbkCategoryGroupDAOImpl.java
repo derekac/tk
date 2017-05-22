@@ -50,4 +50,14 @@ public class TbkCategoryGroupDAOImpl extends TreasureSqlMapClientDaoSupport impl
     public List<TbkCategoryGroup> selectAllCategoryGroup() {
         return getSqlMapClientTemplate().queryForList("tbk_category_group.selectAllCategoryGroup");
     }
+
+    @Override
+    public List<TbkCategoryGroup> selectParams(TbkCategoryGroup params) {
+        return (List<TbkCategoryGroup>) getSqlMapClientTemplate().queryForList("tbk_category_group.selectParams", params);
+    }
+
+    @Override
+    public List<TbkCategoryGroup> selectRankingByWeight() {
+        return (List<TbkCategoryGroup>) getSqlMapClientTemplate().queryForList("tbk_category_group.selectRankingByWeight");
+    }
 }

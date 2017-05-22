@@ -70,6 +70,9 @@
         <isNotEmpty prepend="and" property="taobaoId">
             taobao_id = #taobaoId#
         </isNotEmpty>
+        <isNotEmpty prepend="and" property="catName">
+            cat_name = #catName#
+        </isNotEmpty>
     </sql>
     <select id="selectByItemsPage" resultMap="BaseResultMap" parameterClass="map">
         select

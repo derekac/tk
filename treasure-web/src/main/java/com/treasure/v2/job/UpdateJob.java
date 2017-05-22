@@ -49,7 +49,8 @@ public class UpdateJob {
         }
     }
 
-    @Scheduled(cron = "0 * * * * ?")
+    // 凌晨1点跑一次
+    @Scheduled(cron = "0 0 1 * * ?")
     public void update() {
         logger.info("开始启动更新宝贝服务");
         int pageNo   = 0;

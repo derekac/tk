@@ -58,6 +58,7 @@ public class PerfectItemService {
         Map params = Maps.newHashMap();
         params.put("query", param.getQuery());
         params.put("gid", param.getGid());
+        params.put("catName", param.getCatName());
         if (StringUtils.isNotEmpty(param.getSort())) {
             List<String> sorts = Lists.newArrayList(Splitter.on("_").splitToList(param.getSort()));
             if (sorts.size() > 1) {
@@ -111,6 +112,7 @@ public class PerfectItemService {
         private Integer endPrice;
         private Integer pageNo;
         private Integer pageSize;
+        private String catName;
 
         public Integer getPlatform() {
             return platform;
@@ -183,6 +185,14 @@ public class PerfectItemService {
 
         public void setPageSize(Integer pageSize) {
             this.pageSize = pageSize;
+        }
+
+        public String getCatName() {
+            return catName;
+        }
+
+        public void setCatName(String catName) {
+            this.catName = catName;
         }
     }
 

@@ -45,6 +45,7 @@ public class ItemController {
     public Object getItem(@RequestParam(required = false) String query,
                           @RequestParam(required = false) Long gid,
                           @RequestParam(required = false) String sort,
+                          @RequestParam(required = false) String catName,
                           @RequestParam(required = false) Integer startPrice,
                           @RequestParam(required = false) Integer endPrice,
                           @RequestParam(required = false, defaultValue = "0") Integer pageNo,
@@ -55,6 +56,7 @@ public class ItemController {
         param.setGid(gid);
         param.setSort(sort);
         param.setStartPrice(startPrice);
+        param.setCatName(catName);
         param.setEndPrice(endPrice);
         param.setPageNo(pageNo);
         param.setPageSize(pageSize);

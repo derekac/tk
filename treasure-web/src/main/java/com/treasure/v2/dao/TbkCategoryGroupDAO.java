@@ -18,4 +18,8 @@ public interface TbkCategoryGroupDAO {
     int updateByPrimaryKey(TbkCategoryGroup record);
 
     List<TbkCategoryGroup> selectAllCategoryGroup();
+
+    List<TbkCategoryGroup> selectParams(TbkCategoryGroup params);
+
+    List<TbkCategoryGroup> selectRankingByWeight();
 }

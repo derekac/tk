@@ -75,7 +75,12 @@ public class ItemController {
 
         TbkPrefectItem prefectItem = tbkPrefectItemDAO.selectByItemId(itemId);
         TbkItemInfoApi info = tbkItemInfoService.getItemInfoBuNumId(itemId);
-        TbkItemDetail detail = tbkItemInfoService.getItemDetailByNumId(itemId, info.getDescInfo());
+
+        TbkItemDetail detail = null;
+
+        if (info.getDescInfo() != null) {
+            detail = tbkItemInfoService.getItemDetailByNumId(itemId, info.getDescInfo());
+        }
 
         sr.put("info", info);
         sr.put("prefectItem", prefectItem.formatPerfectItem());

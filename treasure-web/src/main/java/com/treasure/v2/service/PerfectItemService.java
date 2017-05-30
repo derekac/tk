@@ -33,6 +33,7 @@ public class PerfectItemService {
         order_params.put("price", "price");
         order_params.put("volume", "volume");
         order_params.put("couponsRemain", "couponsRemain");
+        order_params.put("id", "id");
     }
 
     @Autowired

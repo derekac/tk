@@ -138,11 +138,6 @@
     </bean>
 
 
-
-    <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <property name="configLocation" value="/WEB-INF/views/velocity.properties"/>
-    </bean>
-
     <bean id="velocityViewResolver"
           class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
         <property name="cache" value="false"/>

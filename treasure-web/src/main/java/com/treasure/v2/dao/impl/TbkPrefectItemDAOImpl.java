@@ -4,10 +4,12 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.treasure.v2.dao.TbkPrefectItemDAO;
+import com.treasure.v2.model.TbkCategoryGroup;
 import com.treasure.v2.model.TbkPrefectItem;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,5 +88,13 @@ public class TbkPrefectItemDAOImpl extends TreasureSqlMapClientDaoSupport implem
         _key.setItemId(ItemId);
         TbkPrefectItem record = (TbkPrefectItem) getSqlMapClientTemplate().queryForObject("tbk_prefect_item.selectByItemId", _key);
         return record;
+    }
+
+    @Override
+    public List<TbkCategoryGroup> selectByGroup() {
+        List<TbkCategoryGroup> categoryGroupList = new ArrayList<TbkCategoryGroup>();
+
+        categoryGroupList = getSqlMapClientTemplate().queryForList("tbk_prefect_item.selectByGroup");
+        return categoryGroupList;
     }
 }

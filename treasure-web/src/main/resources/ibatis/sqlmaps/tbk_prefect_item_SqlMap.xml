@@ -31,6 +31,12 @@
         <result column="short_url" property="shortUrl" jdbcType="VARCHAR"/>
         <result column="prefer_price" property="preferPrice" jdbcType="VARCHAR"/>
     </resultMap>
+
+    <resultMap id="catNameResultMap" class="com.treasure.v2.model.TbkCategoryGroup">
+        <result column="category_name" property="categoryName" jdbcType="VARCHAR"/>
+        <result column="weight" property="weight" jdbcType="INTEGER"/>
+    </resultMap>
+
     <sql id="Base_Column_List">
     id, item_id, title, img_url, item_url, cat_name, tbk_url, price, volume, income_rate, 
     commission, taobao_nick, taobao_id, shop_name, platform, coupons_id, coupons_total, 
@@ -448,5 +454,13 @@
         where item_id = #itemId:BIGINT#
         order by coupons_end desc
         limit 1;
+    </select>
+
+
+    <select id="selectByGroup" resultMap="catNameResultMap" parameterClass="com.treasure.v2.model.TbkCategoryGroup">
+        select
+        count(1) weight, cat_name category_name
+        from tbk_prefect_item
+        GROUP by cat_name
     </select>
 </sqlMap>

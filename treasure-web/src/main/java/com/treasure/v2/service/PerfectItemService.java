@@ -4,6 +4,7 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.treasure.v2.dao.TbkPrefectItemDAO;
+import com.treasure.v2.model.TbkCategoryGroup;
 import com.treasure.v2.model.TbkPrefectItem;
 import com.treasure.v2.vo.PerfectItem;
 import org.apache.commons.collections.CollectionUtils;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -195,6 +197,18 @@ public class PerfectItemService {
         public void setCatName(String catName) {
             this.catName = catName;
         }
+    }
+
+    public List<TbkCategoryGroup> getCatNameWeight () {
+        List<TbkCategoryGroup> categoryGroupList = new ArrayList<TbkCategoryGroup>();
+
+        try {
+            categoryGroupList = tbkPrefectItemDAO.selectByGroup();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+
+        return categoryGroupList;
     }
 
 }

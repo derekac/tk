@@ -1,5 +1,6 @@
 package com.treasure.v2.dao;
 
+import com.treasure.v2.model.TbkCategoryGroup;
 import com.treasure.v2.model.TbkPrefectItem;
 
 import java.util.List;
@@ -30,4 +31,7 @@ public interface TbkPrefectItemDAO {
     List<TbkPrefectItem> selectByItemsPage(int pageNo,int pageSize);
 
     TbkPrefectItem selectByItemId(Long ItemId);
+
+
+    List<TbkCategoryGroup> selectByGroup();
 }

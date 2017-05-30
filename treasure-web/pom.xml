@@ -60,6 +60,11 @@
             <version>1.0</version>
         </dependency>
         <dependency>
+            <groupId>tk.com</groupId>
+            <artifactId>jd-sdk</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>

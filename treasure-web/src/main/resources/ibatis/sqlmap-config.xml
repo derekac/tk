@@ -13,5 +13,6 @@
     <sqlMap resource="ibatis/sqlmaps/tbk_weixin_user_SqlMap.xml"/>
     <sqlMap resource="ibatis/sqlmaps/tbk_item_info_api_SqlMap.xml"/>
     <sqlMap resource="ibatis/sqlmaps/tbk_item_detail_SqlMap.xml"/>
+    <sqlMap resource="ibatis/sqlmaps/tbk_jd_user_SqlMap.xml"/>
 
 </sqlMapConfig>

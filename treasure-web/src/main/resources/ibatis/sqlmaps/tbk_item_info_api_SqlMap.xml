@@ -173,7 +173,7 @@
         track_params = #trackParams:LONGVARCHAR#
       </isNotNull>
       <isNotNull prepend="," property="isAnalysis">
-        is_analysis = #is_analysis:INTEGER#
+        is_analysis = #isAnalysis:INTEGER#
       </isNotNull>
     </dynamic>
     where num_id = #numId:BIGINT#

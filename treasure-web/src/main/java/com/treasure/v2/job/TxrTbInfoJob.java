@@ -141,9 +141,13 @@ public class TxrTbInfoJob {
       rate.setLastNickHeadPic(jsonObject.getString("headPic"));
       rate.setLastStar(jsonObject.getInteger("star"));
       rate.setLastSubInfo(jsonObject.getString("subInfo"));
-      rate.setLastRatePicList(jsonRate.getString("ratePicList"));
+      rate.setLastRatePicList(jsonObject.getJSONArray("ratePicList").toString());
     }
 
     return rate;
   }
+
+  /*public static void main(String[] args) {
+    TxrTbItemRate rate = rateAnalysis(111111L, "{\"rateCounts\":\"160622\",\"rateDetailList\":[{\"nick\":\"天**3\",\"feedback\":\"常规尺寸，穿着舒适轻盈，鞋底是那种泡沫底，适合室内，亚麻材质的穿着舒适不粘脚，一直想买这样的，和图片也没有差别，鞋子还可以很轻穿上很舒服，鞋底不是牛筋底是比较轻的那种比较适合家居穿\",\"ratePicList\":[\"http://gw.alicdn.com/bao/uploaded/i1/1098606028815905140/TB2cS0anHXlpuFjSszfXXcSGXXa_!!0-rate.jpg\",\"http://gw.alicdn.com/bao/uploaded/i1/1098606028836018127/TB2Oq69qmFmpuFjSZFrXXayOXXa_!!0-rate.jpg\",\"http://gw.alicdn.com/bao/uploaded/i3/1098606028874979292/TB2tApenNXkpuFjy0FiXXbUfFXa_!!0-rate.jpg\",\"http://gw.alicdn.com/bao/uploaded/i3/1098606028886981364/TB2OmdKnR8lpuFjSspaXXXJKpXa_!!0-rate.jpg\",\"http://gw.alicdn.com/bao/uploaded/i1/1098606028949704270/TB2aZ8hnMxlpuFjSszgXXcJdpXa_!!0-rate.jpg\"],\"star\":\"3\",\"subInfo\":\"2017-04-30 鞋码:35/36;颜色分类:6149粉红\",\"headPic\":\"http://assets.alicdn.com/app/sns/img/default/avatar-80.png\"}]}");
+  }*/
 }

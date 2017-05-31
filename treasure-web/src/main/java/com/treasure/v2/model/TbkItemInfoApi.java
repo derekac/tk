@@ -25,6 +25,8 @@ public class TbkItemInfoApi {
 
     private String trackParams;
 
+    private Integer isAnalysis;
+
     public Long getNumId() {
         return numId;
     }
@@ -119,5 +121,13 @@ public class TbkItemInfoApi {
 
     public void setTrackParams(String trackParams) {
         this.trackParams = trackParams == null ? null : trackParams.trim();
+    }
+
+    public Integer getIsAnalysis() {
+        return isAnalysis;
+    }
+
+    public void setIsAnalysis(Integer isAnalysis) {
+        this.isAnalysis = isAnalysis;
     }
 }

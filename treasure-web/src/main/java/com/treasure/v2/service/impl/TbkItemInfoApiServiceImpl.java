@@ -33,4 +33,17 @@ public class TbkItemInfoApiServiceImpl implements TbkItemInfoApiService {
     }
     return itemInfoApiList;
   }
+
+  @Override
+  public void hadAnalysis(Long numId) {
+    TbkItemInfoApi params = new TbkItemInfoApi();
+    params.setNumId(numId);
+    params.setIsAnalysis(1);
+
+    try {
+      tbkItemInfoApiDAO.updateByPrimaryKeySelective(params);
+    } catch (Exception e) {
+      logger.error(e.getMessage(), e);
+    }
+  }
 }

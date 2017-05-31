@@ -53,6 +53,8 @@ public class TxrTbInfoJob {
           txrTbItemService.addSelective(txrTbItemInfo);
         }
       }
+
+      tbkItemInfoApiService.hadAnalysis(item.getNumId());
     }
   }
 

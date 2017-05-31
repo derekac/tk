@@ -14,4 +14,6 @@ public interface TbkItemInfoApiService {
    * @return
    */
   List<TbkItemInfoApi> getNotAnalysis();
+
+  void hadAnalysis(Long numId);
 }

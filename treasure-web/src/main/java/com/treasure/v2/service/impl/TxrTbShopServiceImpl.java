@@ -6,10 +6,13 @@ import com.treasure.v2.service.TxrTbShopService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by crow on 2017/5/30.
  */
+
+@Service
 public class TxrTbShopServiceImpl implements TxrTbShopService{
   private Logger logger = LoggerFactory.getLogger(TxrTbShopServiceImpl.class);
 

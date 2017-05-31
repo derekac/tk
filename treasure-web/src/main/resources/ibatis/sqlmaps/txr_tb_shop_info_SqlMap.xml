@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="txr_tb_shop_info" >
+  <resultMap id="BaseResultMap" class="com.treasure.v2.model.TxrTbShopInfo" >
+    <result column="id" property="id" jdbcType="BIGINT" />
+    <result column="shop_id" property="shopId" jdbcType="BIGINT" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="shop_promtion_type" property="shopPromtionType" jdbcType="VARCHAR" />
+    <result column="credit_level" property="creditLevel" jdbcType="INTEGER" />
+    <result column="fans_count" property="fansCount" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="description_score" property="descriptionScore" jdbcType="DOUBLE" />
+    <result column="service_score" property="serviceScore" jdbcType="DOUBLE" />
+    <result column="courier_score" property="courierScore" jdbcType="DOUBLE" />
+    <result column="user_num_id" property="userNumId" jdbcType="BIGINT" />
+    <result column="starts" property="starts" jdbcType="TIMESTAMP" />
+    <result column="weitao_id" property="weitaoId" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" class="com.treasure.v2.model.TxrTbShopInfo" extends="txr_tb_shop_info.BaseResultMap" >
+    <result column="shop_pic" property="shopPic" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, shop_id, shop_name, shop_promtion_type, credit_level, fans_count, `type`, description_score, 
+    service_score, courier_score, user_num_id, starts, weitao_id, update_time, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    shop_pic
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterClass="com.treasure.v2.model.TxrTbShopInfo" >
+    select 
+    <include refid="txr_tb_shop_info.Base_Column_List" />
+    ,
+    <include refid="txr_tb_shop_info.Blob_Column_List" />
+    from txr_tb_shop_info
+    where id = #id:BIGINT#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.treasure.v2.model.TxrTbShopInfo" >
+    delete from txr_tb_shop_info
+    where id = #id:BIGINT#
+  </delete>
+  <insert id="insert" parameterClass="com.treasure.v2.model.TxrTbShopInfo" >
+    insert into txr_tb_shop_info (id, shop_id, shop_name, shop_promtion_type, 
+      credit_level, fans_count, `type`, description_score, 
+      service_score, courier_score, user_num_id, starts, 
+      weitao_id, update_time, create_time, shop_pic
+      )
+    values (#id:BIGINT#, #shopId:BIGINT#, #shopName:VARCHAR#, #shopPromtionType:VARCHAR#, 
+      #creditLevel:INTEGER#, #fansCount:BIGINT#, #type:VARCHAR#, #descriptionScore:DOUBLE#, 
+      #serviceScore:DOUBLE#, #courierScore:DOUBLE#, #userNumId:BIGINT#, #starts:TIMESTAMP#, 
+      #weitaoId:BIGINT#, #updateTime:TIMESTAMP#, #createTime:TIMESTAMP#, #shopPic:LONGVARCHAR#
+      )
+  </insert>
+  <insert id="insertSelective" parameterClass="com.treasure.v2.model.TxrTbShopInfo" >
+    insert into txr_tb_shop_info
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        id
+      </isNotNull>
+      <isNotNull prepend="," property="shopId" >
+        shop_id
+      </isNotNull>
+      <isNotNull prepend="," property="shopName" >
+        shop_name
+      </isNotNull>
+      <isNotNull prepend="," property="shopPromtionType" >
+        shop_promtion_type
+      </isNotNull>
+      <isNotNull prepend="," property="creditLevel" >
+        credit_level
+      </isNotNull>
+      <isNotNull prepend="," property="fansCount" >
+        fans_count
+      </isNotNull>
+      <isNotNull prepend="," property="type" >
+        `type`
+      </isNotNull>
+      <isNotNull prepend="," property="descriptionScore" >
+        description_score
+      </isNotNull>
+      <isNotNull prepend="," property="serviceScore" >
+        service_score
+      </isNotNull>
+      <isNotNull prepend="," property="courierScore" >
+        courier_score
+      </isNotNull>
+      <isNotNull prepend="," property="userNumId" >
+        user_num_id
+      </isNotNull>
+      <isNotNull prepend="," property="starts" >
+        starts
+      </isNotNull>
+      <isNotNull prepend="," property="weitaoId" >
+        weitao_id
+      </isNotNull>
+      <isNotNull prepend="," property="updateTime" >
+        update_time
+      </isNotNull>
+      <isNotNull prepend="," property="createTime" >
+        create_time
+      </isNotNull>
+      <isNotNull prepend="," property="shopPic" >
+        shop_pic
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="shopId" >
+        #shopId:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="shopName" >
+        #shopName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="shopPromtionType" >
+        #shopPromtionType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditLevel" >
+        #creditLevel:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="fansCount" >
+        #fansCount:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="type" >
+        #type:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="descriptionScore" >
+        #descriptionScore:DOUBLE#
+      </isNotNull>
+      <isNotNull prepend="," property="serviceScore" >
+        #serviceScore:DOUBLE#
+      </isNotNull>
+      <isNotNull prepend="," property="courierScore" >
+        #courierScore:DOUBLE#
+      </isNotNull>
+      <isNotNull prepend="," property="userNumId" >
+        #userNumId:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="starts" >
+        #starts:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="weitaoId" >
+        #weitaoId:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="updateTime" >
+        #updateTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="createTime" >
+        #createTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="shopPic" >
+        #shopPic:LONGVARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.treasure.v2.model.TxrTbShopInfo" >
+    update txr_tb_shop_info
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="shopId" >
+        shop_id = #shopId:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="shopName" >
+        shop_name = #shopName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="shopPromtionType" >
+        shop_promtion_type = #shopPromtionType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="creditLevel" >
+        credit_level = #creditLevel:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="fansCount" >
+        fans_count = #fansCount:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="type" >
+        `type` = #type:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="descriptionScore" >
+        description_score = #descriptionScore:DOUBLE#
+      </isNotNull>
+      <isNotNull prepend="," property="serviceScore" >
+        service_score = #serviceScore:DOUBLE#
+      </isNotNull>
+      <isNotNull prepend="," property="courierScore" >
+        courier_score = #courierScore:DOUBLE#
+      </isNotNull>
+      <isNotNull prepend="," property="userNumId" >
+        user_num_id = #userNumId:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="starts" >
+        starts = #starts:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="weitaoId" >
+        weitao_id = #weitaoId:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="updateTime" >
+        update_time = #updateTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="createTime" >
+        create_time = #createTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="shopPic" >
+        shop_pic = #shopPic:LONGVARCHAR#
+      </isNotNull>
+    </dynamic>
+    where id = #id:BIGINT#
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterClass="com.treasure.v2.model.TxrTbShopInfo" >
+    update txr_tb_shop_info
+    set shop_id = #shopId:BIGINT#,
+      shop_name = #shopName:VARCHAR#,
+      shop_promtion_type = #shopPromtionType:VARCHAR#,
+      credit_level = #creditLevel:INTEGER#,
+      fans_count = #fansCount:BIGINT#,
+      `type` = #type:VARCHAR#,
+      description_score = #descriptionScore:DOUBLE#,
+      service_score = #serviceScore:DOUBLE#,
+      courier_score = #courierScore:DOUBLE#,
+      user_num_id = #userNumId:BIGINT#,
+      starts = #starts:TIMESTAMP#,
+      weitao_id = #weitaoId:BIGINT#,
+      update_time = #updateTime:TIMESTAMP#,
+      create_time = #createTime:TIMESTAMP#,
+      shop_pic = #shopPic:LONGVARCHAR#
+    where id = #id:BIGINT#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.treasure.v2.model.TxrTbShopInfo" >
+    update txr_tb_shop_info
+    set shop_id = #shopId:BIGINT#,
+      shop_name = #shopName:VARCHAR#,
+      shop_promtion_type = #shopPromtionType:VARCHAR#,
+      credit_level = #creditLevel:INTEGER#,
+      fans_count = #fansCount:BIGINT#,
+      `type` = #type:VARCHAR#,
+      description_score = #descriptionScore:DOUBLE#,
+      service_score = #serviceScore:DOUBLE#,
+      courier_score = #courierScore:DOUBLE#,
+      user_num_id = #userNumId:BIGINT#,
+      starts = #starts:TIMESTAMP#,
+      weitao_id = #weitaoId:BIGINT#,
+      update_time = #updateTime:TIMESTAMP#,
+      create_time = #createTime:TIMESTAMP#
+    where id = #id:BIGINT#
+  </update>
+
+
+
+  <select id="selectByShopId" resultMap="ResultMapWithBLOBs" parameterClass="com.treasure.v2.model.TxrTbShopInfo" >
+    select
+    <include refid="txr_tb_shop_info.Base_Column_List" />
+    ,
+    <include refid="txr_tb_shop_info.Blob_Column_List" />
+    from txr_tb_shop_info
+    where shop_id = #shopId:BIGINT#
+  </select>
+</sqlMap>

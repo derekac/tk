@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.treasure.v2.dao.TbkJdUserDAO;
 import com.treasure.v2.model.TbkJdUser;
 import com.treasure.v2.service.JdUserService;
-import freemarker.template.utility.DateUtil;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

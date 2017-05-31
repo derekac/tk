@@ -16,13 +16,14 @@
     <result column="extras" property="extras" jdbcType="LONGVARCHAR" />
     <result column="layout_data" property="layoutData" jdbcType="LONGVARCHAR" />
     <result column="track_params" property="trackParams" jdbcType="LONGVARCHAR" />
+    <result column="is_analysis" property="isAnalysis" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     num_id
   </sql>
   <sql id="Blob_Column_List" >
     api_stack, item_info_model, sku_model, seller, guarantee_info, props, desc_info, 
-    rate_info, extras, layout_data, track_params
+    rate_info, extras, layout_data, track_params, is_analysis
   </sql>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterClass="com.treasure.v2.model.TbkItemInfoApi" >
     select 
@@ -39,11 +40,12 @@
   <insert id="insert" parameterClass="com.treasure.v2.model.TbkItemInfoApi" >
     insert into tbk_item_info_api (num_id, api_stack, item_info_model, sku_model, 
       seller, guarantee_info, props, desc_info, 
-      rate_info, extras, layout_data, track_params
+      rate_info, extras, layout_data, track_params, is_analysis
       )
     values (#numId:BIGINT#, #apiStack:LONGVARCHAR#, #itemInfoModel:LONGVARCHAR#, #skuModel:LONGVARCHAR#, 
       #seller:LONGVARCHAR#, #guaranteeInfo:LONGVARCHAR#, #props:LONGVARCHAR#, #descInfo:LONGVARCHAR#, 
-      #rateInfo:LONGVARCHAR#, #extras:LONGVARCHAR#, #layoutData:LONGVARCHAR#, #trackParams:LONGVARCHAR#
+      #rateInfo:LONGVARCHAR#, #extras:LONGVARCHAR#, #layoutData:LONGVARCHAR#, #trackParams:LONGVARCHAR#,
+      #isAnalysis:INTEGER#
       )
   </insert>
   <insert id="insertSelective" parameterClass="com.treasure.v2.model.TbkItemInfoApi" >
@@ -85,6 +87,9 @@
       <isNotNull prepend="," property="trackParams" >
         track_params
       </isNotNull>
+      <isNotNull prepend="," property="isAnalysis">
+        is_analysis
+      </isNotNull>
       )
     </dynamic>
     values
@@ -125,6 +130,9 @@
       <isNotNull prepend="," property="trackParams" >
         #trackParams:LONGVARCHAR#
       </isNotNull>
+      <isNotNull prepend="," property="isAnalysis">
+        #isAnalysis:INTEGER#
+      </isNotNull>
       )
     </dynamic>
   </insert>
@@ -164,6 +172,9 @@
       <isNotNull prepend="," property="trackParams" >
         track_params = #trackParams:LONGVARCHAR#
       </isNotNull>
+      <isNotNull prepend="," property="isAnalysis">
+        is_analysis = #is_analysis:INTEGER#
+      </isNotNull>
     </dynamic>
     where num_id = #numId:BIGINT#
   </update>
@@ -179,7 +190,18 @@
       rate_info = #rateInfo:LONGVARCHAR#,
       extras = #extras:LONGVARCHAR#,
       layout_data = #layoutData:LONGVARCHAR#,
-      track_params = #trackParams:LONGVARCHAR#
+      track_params = #trackParams:LONGVARCHAR#,
+      is_analysis = #isAnalysis:INTEGER#
     where num_id = #numId:BIGINT#
   </update>
+
+
+  <select id="selectNotAnalysis" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="tbk_item_info_api.Base_Column_List" />
+    ,
+    <include refid="tbk_item_info_api.Blob_Column_List" />
+    from tbk_item_info_api
+    where is_analysis = 0
+  </select>
 </sqlMap>

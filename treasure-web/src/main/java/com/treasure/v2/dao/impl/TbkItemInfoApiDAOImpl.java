@@ -4,6 +4,8 @@ import com.treasure.v2.dao.TbkItemInfoApiDAO;
 import com.treasure.v2.model.TbkItemInfoApi;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class TbkItemInfoApiDAOImpl extends TreasureSqlMapClientDaoSupport implements TbkItemInfoApiDAO {
 
@@ -41,5 +43,10 @@ public class TbkItemInfoApiDAOImpl extends TreasureSqlMapClientDaoSupport implem
     public int updateByPrimaryKey(TbkItemInfoApi record) {
         int rows = getSqlMapClientTemplate().update("tbk_item_info_api.updateByPrimaryKeyWithBLOBs", record);
         return rows;
+    }
+
+    @Override
+    public List<TbkItemInfoApi> selectNotAnalysis() {
+        return (List<TbkItemInfoApi>) getSqlMapClientTemplate().queryForList("tbk_item_info_api.selectNotAnalysis");
     }
 }

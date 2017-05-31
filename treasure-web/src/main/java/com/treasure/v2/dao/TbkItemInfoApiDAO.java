@@ -2,6 +2,8 @@ package com.treasure.v2.dao;
 
 import com.treasure.v2.model.TbkItemInfoApi;
 
+import java.util.List;
+
 public interface TbkItemInfoApiDAO {
     int deleteByPrimaryKey(Long numId);
 
@@ -14,4 +16,6 @@ public interface TbkItemInfoApiDAO {
     int updateByPrimaryKeySelective(TbkItemInfoApi record);
 
     int updateByPrimaryKey(TbkItemInfoApi record);
+
+    List<TbkItemInfoApi> selectNotAnalysis();
 }

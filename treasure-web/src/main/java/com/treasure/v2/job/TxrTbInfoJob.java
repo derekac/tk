@@ -4,9 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.treasure.v2.model.TbkItemInfoApi;
 import com.treasure.v2.model.TxrTbItemInfo;
+import com.treasure.v2.model.TxrTbItemRate;
 import com.treasure.v2.model.TxrTbShopInfo;
 import com.treasure.v2.service.TbkItemInfoApiService;
 import com.treasure.v2.service.TxrTbItemService;
+import com.treasure.v2.service.TxrTbRateService;
 import com.treasure.v2.service.TxrTbShopService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +33,9 @@ public class TxrTbInfoJob {
   private TxrTbItemService txrTbItemService;
 
   @Autowired
+  private TxrTbRateService txrTbRateService;
+
+  @Autowired
   private TbkItemInfoApiService tbkItemInfoApiService;
 
   // 每30分钟执行一次
@@ -51,6 +56,13 @@ public class TxrTbInfoJob {
         TxrTbItemInfo txrTbItemInfo = itemInfoAnglysis(item.getItemInfoModel());
         if (txrTbItemService.getByItemId(txrTbItemInfo.getItemId()) == null) {
           txrTbItemService.addSelective(txrTbItemInfo);
+        }
+      }
+
+      if (item.getRateInfo() != null) {
+        TxrTbItemRate txrTbItemRate = rateAnalysis(item.getNumId(), item.getRateInfo());
+        if (txrTbRateService.getByItemId(item.getNumId()) == null) {
+          txrTbRateService.addSelective(txrTbItemRate);
         }
       }
 
@@ -113,5 +125,25 @@ public class TxrTbInfoJob {
     }
 
     return info;
+  }
+
+  private static TxrTbItemRate rateAnalysis(Long itemId, String str) {
+    TxrTbItemRate rate = new TxrTbItemRate();
+    JSONObject jsonRate = JSONObject.parseObject(str);
+
+    rate.setItemId(itemId);
+    rate.setCount(jsonRate.getInteger("rateCounts"));
+
+    for (Object o: jsonRate.getJSONArray("rateDetailList")) {
+      JSONObject jsonObject = (JSONObject) o;
+      rate.setLastFeedback(jsonObject.getString("feedback"));
+      rate.setLastNick(jsonObject.getString("nick"));
+      rate.setLastNickHeadPic(jsonObject.getString("headPic"));
+      rate.setLastStar(jsonObject.getInteger("star"));
+      rate.setLastSubInfo(jsonObject.getString("subInfo"));
+      rate.setLastRatePicList(jsonRate.getString("ratePicList"));
+    }
+
+    return rate;
   }
 }

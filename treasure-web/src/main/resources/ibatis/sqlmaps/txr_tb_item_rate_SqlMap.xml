@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="txr_tb_item_rate" >
+  <resultMap id="BaseResultMap" class="com.treasure.v2.model.TxrTbItemRate" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="item_id" property="itemId" jdbcType="BIGINT" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="last_nick" property="lastNick" jdbcType="VARCHAR" />
+    <result column="last_star" property="lastStar" jdbcType="INTEGER" />
+    <result column="last_nick_head_pic" property="lastNickHeadPic" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" class="com.treasure.v2.model.TxrTbItemRate" extends="txr_tb_item_rate.BaseResultMap" >
+    <result column="last_feedback" property="lastFeedback" jdbcType="LONGVARCHAR" />
+    <result column="last_rate_pic_list" property="lastRatePicList" jdbcType="LONGVARCHAR" />
+    <result column="last_sub_info" property="lastSubInfo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, item_id, `count`, last_nick, last_star, last_nick_head_pic, update_time, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    last_feedback, last_rate_pic_list, last_sub_info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterClass="com.treasure.v2.model.TxrTbItemRate" >
+    select 
+    <include refid="txr_tb_item_rate.Base_Column_List" />
+    ,
+    <include refid="txr_tb_item_rate.Blob_Column_List" />
+    from txr_tb_item_rate
+    where id = #id:INTEGER#
+  </select>
+  <delete id="deleteByPrimaryKey" parameterClass="com.treasure.v2.model.TxrTbItemRate" >
+    delete from txr_tb_item_rate
+    where id = #id:INTEGER#
+  </delete>
+  <insert id="insert" parameterClass="com.treasure.v2.model.TxrTbItemRate" >
+    insert into txr_tb_item_rate (id, item_id, `count`, last_nick, last_star, 
+      last_nick_head_pic, update_time, create_time, last_feedback, 
+      last_rate_pic_list, last_sub_info)
+    values (#id:INTEGER#, #itemId:BIGINT#, #count:INTEGER#, #lastNick:VARCHAR#, #lastStar:INTEGER#, 
+      #lastNickHeadPic:VARCHAR#, #updateTime:TIMESTAMP#, #createTime:TIMESTAMP#, #lastFeedback:LONGVARCHAR#, 
+      #lastRatePicList:LONGVARCHAR#, #lastSubInfo:LONGVARCHAR#)
+  </insert>
+  <insert id="insertSelective" parameterClass="com.treasure.v2.model.TxrTbItemRate" >
+    insert into txr_tb_item_rate
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        id
+      </isNotNull>
+      <isNotNull prepend="," property="itemId" >
+        item_id
+      </isNotNull>
+      <isNotNull prepend="," property="count" >
+        `count`
+      </isNotNull>
+      <isNotNull prepend="," property="lastNick" >
+        last_nick
+      </isNotNull>
+      <isNotNull prepend="," property="lastStar" >
+        last_star
+      </isNotNull>
+      <isNotNull prepend="," property="lastNickHeadPic" >
+        last_nick_head_pic
+      </isNotNull>
+      <isNotNull prepend="," property="updateTime" >
+        update_time
+      </isNotNull>
+      <isNotNull prepend="," property="createTime" >
+        create_time
+      </isNotNull>
+      <isNotNull prepend="," property="lastFeedback" >
+        last_feedback
+      </isNotNull>
+      <isNotNull prepend="," property="lastRatePicList" >
+        last_rate_pic_list
+      </isNotNull>
+      <isNotNull prepend="," property="lastSubInfo" >
+        last_sub_info
+      </isNotNull>
+      )
+    </dynamic>
+    values
+    <dynamic prepend="(" >
+      <isNotNull prepend="," property="id" >
+        #id:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="itemId" >
+        #itemId:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="count" >
+        #count:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="lastNick" >
+        #lastNick:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastStar" >
+        #lastStar:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="lastNickHeadPic" >
+        #lastNickHeadPic:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="updateTime" >
+        #updateTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="createTime" >
+        #createTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastFeedback" >
+        #lastFeedback:LONGVARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastRatePicList" >
+        #lastRatePicList:LONGVARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastSubInfo" >
+        #lastSubInfo:LONGVARCHAR#
+      </isNotNull>
+      )
+    </dynamic>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterClass="com.treasure.v2.model.TxrTbItemRate" >
+    update txr_tb_item_rate
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="itemId" >
+        item_id = #itemId:BIGINT#
+      </isNotNull>
+      <isNotNull prepend="," property="count" >
+        `count` = #count:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="lastNick" >
+        last_nick = #lastNick:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastStar" >
+        last_star = #lastStar:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="lastNickHeadPic" >
+        last_nick_head_pic = #lastNickHeadPic:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="updateTime" >
+        update_time = #updateTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="createTime" >
+        create_time = #createTime:TIMESTAMP#
+      </isNotNull>
+      <isNotNull prepend="," property="lastFeedback" >
+        last_feedback = #lastFeedback:LONGVARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastRatePicList" >
+        last_rate_pic_list = #lastRatePicList:LONGVARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="lastSubInfo" >
+        last_sub_info = #lastSubInfo:LONGVARCHAR#
+      </isNotNull>
+    </dynamic>
+    where id = #id:INTEGER#
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterClass="com.treasure.v2.model.TxrTbItemRate" >
+    update txr_tb_item_rate
+    set item_id = #itemId:BIGINT#,
+      `count` = #count:INTEGER#,
+      last_nick = #lastNick:VARCHAR#,
+      last_star = #lastStar:INTEGER#,
+      last_nick_head_pic = #lastNickHeadPic:VARCHAR#,
+      update_time = #updateTime:TIMESTAMP#,
+      create_time = #createTime:TIMESTAMP#,
+      last_feedback = #lastFeedback:LONGVARCHAR#,
+      last_rate_pic_list = #lastRatePicList:LONGVARCHAR#,
+      last_sub_info = #lastSubInfo:LONGVARCHAR#
+    where id = #id:INTEGER#
+  </update>
+  <update id="updateByPrimaryKey" parameterClass="com.treasure.v2.model.TxrTbItemRate" >
+    update txr_tb_item_rate
+    set item_id = #itemId:BIGINT#,
+      `count` = #count:INTEGER#,
+      last_nick = #lastNick:VARCHAR#,
+      last_star = #lastStar:INTEGER#,
+      last_nick_head_pic = #lastNickHeadPic:VARCHAR#,
+      update_time = #updateTime:TIMESTAMP#,
+      create_time = #createTime:TIMESTAMP#
+    where id = #id:INTEGER#
+  </update>
+
+
+  <select id="selectByItemId" resultMap="ResultMapWithBLOBs" parameterClass="com.treasure.v2.model.TxrTbItemRate" >
+    select
+    <include refid="txr_tb_item_rate.Base_Column_List" />
+    ,
+    <include refid="txr_tb_item_rate.Blob_Column_List" />
+    from txr_tb_item_rate
+    where item_id = #itemId:BIGINT#
+  </select>
+</sqlMap>

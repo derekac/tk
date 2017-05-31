@@ -17,4 +17,5 @@
 
     <sqlMap resource="ibatis/sqlmaps/txr_tb_shop_info_SqlMap.xml"/>
     <sqlMap resource="ibatis/sqlmaps/txr_tb_item_info_SqlMap.xml"/>
+    <sqlMap resource="ibatis/sqlmaps/txr_tb_item_rate_SqlMap.xml"/>
 </sqlMapConfig>

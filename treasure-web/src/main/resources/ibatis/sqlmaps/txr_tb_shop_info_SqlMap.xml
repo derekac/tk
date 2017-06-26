@@ -257,4 +257,14 @@
     from txr_tb_shop_info
     where shop_id = #shopId:BIGINT#
   </select>
+
+
+  <select id="selectByShopName" resultMap="ResultMapWithBLOBs" parameterClass="com.treasure.v2.model.TxrTbShopInfo" >
+    select
+    <include refid="txr_tb_shop_info.Base_Column_List" />
+    ,
+    <include refid="txr_tb_shop_info.Blob_Column_List" />
+    from txr_tb_shop_info
+    where shop_name = #shopName:BIGINT# limit 1
+  </select>
 </sqlMap>

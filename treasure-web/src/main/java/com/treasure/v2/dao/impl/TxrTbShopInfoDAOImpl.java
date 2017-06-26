@@ -56,4 +56,12 @@ public class TxrTbShopInfoDAOImpl extends TreasureSqlMapClientDaoSupport impleme
         TxrTbShopInfo record = (TxrTbShopInfo) getSqlMapClientTemplate().queryForObject("txr_tb_shop_info.selectByShopId", _key);
         return record;
     }
+
+    @Override
+    public TxrTbShopInfo selectByShopName(String shopName) {
+        TxrTbShopInfo _key = new TxrTbShopInfo();
+        _key.setShopName(shopName);
+        TxrTbShopInfo record = (TxrTbShopInfo) getSqlMapClientTemplate().queryForObject("txr_tb_shop_info.selectByShopName", _key);
+        return record;
+    }
 }

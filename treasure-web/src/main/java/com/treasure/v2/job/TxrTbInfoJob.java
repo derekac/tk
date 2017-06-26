@@ -48,7 +48,7 @@ public class TxrTbInfoJob {
     for (TbkItemInfoApi item: infoApiList) {
       if (item.getSeller() != null) {
         TxrTbShopInfo txrTbShopInfo = shopInfoAnalysis(item.getSeller());
-        if (txrTbShopService.getByShopId(txrTbShopInfo.getShopId()) == null) {
+        if (txrTbShopService.getByShopName(txrTbShopInfo.getShopName()) == null) {
           txrTbShopService.addSelective(txrTbShopInfo);
         }
       }

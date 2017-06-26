@@ -42,6 +42,7 @@ public class TbkItemInfoApiServiceImpl implements TbkItemInfoApiService {
 
     try {
       tbkItemInfoApiDAO.updateByPrimaryKeySelective(params);
+      logger.info("已经分析 numId", numId);
     } catch (Exception e) {
       logger.error(e.getMessage(), e);
     }

@@ -18,4 +18,6 @@ public interface TxrTbShopInfoDAO {
     int updateByPrimaryKeyWithoutBLOBs(TxrTbShopInfo record);
 
     TxrTbShopInfo selectByShopId(Long shopID);
+
+    TxrTbShopInfo selectByShopName(String shopName);
 }

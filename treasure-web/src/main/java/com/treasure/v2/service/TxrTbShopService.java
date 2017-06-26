@@ -9,5 +9,7 @@ public interface TxrTbShopService {
 
   TxrTbShopInfo getByShopId(Long shopId);
 
+  TxrTbShopInfo getByShopName(String shopName);
+
   void addSelective(TxrTbShopInfo record);
 }

@@ -33,6 +33,19 @@ public class TxrTbShopServiceImpl implements TxrTbShopService{
   }
 
   @Override
+  public TxrTbShopInfo getByShopName(String shopName) {
+    TxrTbShopInfo info = new TxrTbShopInfo();
+
+    try {
+      info = txrTbShopInfoDAO.selectByShopName(shopName);
+    } catch (Exception e) {
+      logger.error(e.getMessage(), e);
+    }
+
+    return info;
+  }
+
+  @Override
   public void addSelective(TxrTbShopInfo record) {
     try {
       txrTbShopInfoDAO.insertSelective(record);

@@ -613,11 +613,6 @@
             <artifactId>velocity-tools</artifactId>
             <version>2.0</version>
         </dependency>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>2.1.0</version>
-        </dependency>
 
         <dependency>
             <groupId>it.sauronsoftware.cron4j</groupId>

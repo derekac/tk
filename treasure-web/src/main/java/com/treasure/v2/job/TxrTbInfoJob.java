@@ -1,6 +1,7 @@
 package com.treasure.v2.job;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.treasure.v2.model.TbkItemInfoApi;
 import com.treasure.v2.model.TxrTbItemInfo;
@@ -141,7 +142,10 @@ public class TxrTbInfoJob {
       rate.setLastNickHeadPic(jsonObject.getString("headPic"));
       rate.setLastStar(jsonObject.getInteger("star"));
       rate.setLastSubInfo(jsonObject.getString("subInfo"));
-      rate.setLastRatePicList(jsonObject.getJSONArray("ratePicList").toString());
+      JSONArray jsonArray = jsonObject.getJSONArray("ratePicList");
+      if (jsonArray.isEmpty()) {
+        rate.setLastRatePicList(jsonArray.toString());
+      }
     }
 
     return rate;

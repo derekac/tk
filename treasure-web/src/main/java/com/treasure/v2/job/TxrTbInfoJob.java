@@ -143,7 +143,7 @@ public class TxrTbInfoJob {
       rate.setLastStar(jsonObject.getInteger("star"));
       rate.setLastSubInfo(jsonObject.getString("subInfo"));
       JSONArray jsonArray = jsonObject.getJSONArray("ratePicList");
-      if (jsonArray.isEmpty()) {
+      if (jsonArray != null && jsonArray.isEmpty()) {
         rate.setLastRatePicList(jsonArray.toString());
       }
     }
